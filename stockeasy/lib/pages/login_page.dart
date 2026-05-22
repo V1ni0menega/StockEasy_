@@ -1,108 +1,88 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
+class Loginpage extends StatefulWidget {
+  const Loginpage({super.key});
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<Loginpage> createState() => _LoginpageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-
+class _LoginpageState extends State<Loginpage> {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController senhaController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-
+      backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
-
+            padding: EdgeInsets.all(20),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
-                const Icon(
-                  Icons.inventory_2,
-                  size: 90,
-                  color: Colors.blue,
-                ),
-
-                const SizedBox(height: 20),
-
-                const Text(
-                  "StockEasy",
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    shape: BoxShape.rectangle,
                   ),
+                  child: Icon(Icons.inventory_2, color: Colors.white, size: 50),
                 ),
-
-                const SizedBox(height: 10),
-
-                const Text(
-                  "Sistema de gerenciamento de estoque",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                SizedBox(height: 20),
+                Text(
+                  'Bem vindos ao StockEasy',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-
-                const SizedBox(height: 40),
-
+                Text(
+                  'Sistema de gerenciamento de estoque ',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                ),
+                SizedBox(height: 40),
                 TextField(
-                  controller: emailController,
+                  controller:
+                      emailController, // flutter consegue ler o valor do campo de texto através do controller
                   decoration: InputDecoration(
-                    labelText: "Email",
-                    prefixIcon: const Icon(Icons.email),
+                    labelText: 'Email',
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
                     ),
                   ),
                 ),
-
-                const SizedBox(height: 20),
-
+                SizedBox(height: 16),
                 TextField(
-                  controller: senhaController,
+                  controller:
+                      passwordController, // flutter consegue ler o valor do campo de texto através do controller
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: "Senha",
-                    prefixIcon: const Icon(Icons.lock),
+                    labelText: 'Senha',
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
                     ),
                   ),
                 ),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    final email = emailController.text.trim();
+                    final password = passwordController.text.trim();
 
-                const SizedBox(height: 30),
-
-                SizedBox(
-                  width: double.infinity,
-                  height: 55,
-
-                  child: ElevatedButton(
-                    onPressed: () {
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
+                    if (email.isEmpty || password.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Por favor, preencha todos os campos'),
                         ),
                       );
-
-                    },
-
-                    child: const Text(
-                      "Entrar",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
+                      return;
+                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  },
+                  child: Text('Entrar'),
                 ),
               ],
             ),

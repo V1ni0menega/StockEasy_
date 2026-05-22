@@ -4,7 +4,6 @@ import 'pages/login_page.dart';
 void main() {
   runApp(const StockEasyApp());
 }
-
 class StockEasyApp extends StatelessWidget {
   const StockEasyApp({super.key});
 
@@ -17,7 +16,7 @@ class StockEasyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: const Loginpage(),
     );
   }
 }
