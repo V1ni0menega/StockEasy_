@@ -73,8 +73,7 @@ class HomePage extends StatelessWidget {
 
                     const SizedBox(height: 16),
 
-                    _buildMenuButton(
-                      'Ver Estoque',
+                    _buildMenuButton('Ver Estoque',
                       Icons.inventory,
                       Colors.blue,
                       () {
